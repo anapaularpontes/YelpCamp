@@ -20,7 +20,7 @@ db.once("open", () => {
 });
 
 
-const app =  express();
+const app = express();
 
 app.engine('ejs', ejsMate);
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +28,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/campgrounds', campgrounds);
@@ -56,6 +57,6 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(3000, ()=> {
+app.listen(3000, () => {
     console.log('Serving on port 3000');
 });
